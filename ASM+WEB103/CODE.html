@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>FPT Polyschool</title>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      line-height: 1.6;
+      background-color: rgba(255, 255, 255, 0.65);
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-bottom: 2px solid #000;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .home-contact-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    .home-icon {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+    }
+    .home-icon img {
+      width: 24px;
+      margin-right: 5px;
+    }
+    .home-icon a {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .home-icon a:hover {
+      background-color: black;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 5px;
+    }
+    .logo {
+      font-size: 32px;
+      font-family: 'Bungee', cursive;
+      margin-top: 80px;
+      text-align: center;
+      padding-bottom: 20px;
+    }
+    .logo span:nth-child(1) { color: blue; }
+    .logo span:nth-child(2) { color: green; }
+    .logo span:nth-child(3) { color: red; }
+    .logo span:nth-child(4) { color: orange; }
+    .contact {
+      text-align: right;
+      font-size: 14px;
+    }
+    .contact a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .contact a:hover {
+      background-color: black;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 5px;
+    }
+    .menu {
+      display: flex;
+      justify-content: center;
+      background-color: rgba(248, 248, 248, 0.9);
+      padding: 10px 0;
+      border-bottom: 2px solid #000;
+      position: sticky;
+      top: 60px;
+      z-index: 999;
+    }
+    .menu a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .menu a:hover {
+      background-color: black;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 5px;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: auto;
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
+    .image-section {
+      margin-top: 30px;
+      width: 100vw;
+      overflow: hidden;
+    }
+    .image-vertical {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+      padding: 30px;
+    }
+    .image-vertical img {
+      width: 80%;
+      max-width: 800px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .faq-item {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      padding: 10px;
+      background: #f9f9f9;
+    }
+    .faq-item h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .faq-item p {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="home-contact-wrapper">
+      <div class="home-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/1946/1946436.png" alt="home icon">
+        <a onclick="showHome()"><span>Home</span></a>
+      </div>
+      <div class="contact">
+        <a href="lien-he.html">Liên hệ ✉ 📞 0966159898</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logo -->
+  <div class="logo">
+    <span>F</span><span>P</span><span>T</span> <span>POLYSCHOOL</span>
+  </div>
+
+  <!-- Menu -->
+  <div class="menu">
+    <a onclick="showSection('gioi-thieu')">Giới thiệu</a>
+    <a onclick="showSection('su-kien')">Sự kiện</a>
+    <a onclick="showSection('moi-truong')">Môi trường học tập</a>
+    <a onclick="showSection('chuong-trinh')">Chương trình đào tạo</a>
+    <a onclick="showSection('hoi-dap')">Hỏi đáp</a>
+    <a onclick="showSection('gop-y')">Góp ý</a>
+  </div>
+
+  <!-- Image Section (thay video bằng ảnh) -->
+  <div id="imageSection" class="image-section">
+    <div class="image-vertical">
+      <img src="anh01.jfif" alt="Ảnh 01">
+      <img src="anh02.jfif" alt="Ảnh 02">
+      <img src="anh03.jfif" alt="Ảnh 03">
+    </div>
+  </div>
+
+  <!-- Nội dung các phần -->
+  <section id="gioi-thieu">
+    <h2>Giới thiệu</h2>
+    <p><strong>FPT Polyschool</strong> là ngôi trường định hướng thực tiễn, cung cấp nền tảng giáo dục toàn diện và sáng tạo dành cho học sinh Việt Nam. Với môi trường học hiện đại, đội ngũ giảng viên giàu kinh nghiệm, FPT Polyschool đang từng bước khẳng định vị thế trong lĩnh vực giáo dục.</p>
+
+    <h3>Tầm nhìn</h3>
+    <p>Trở thành một trong những đơn vị giáo dục hàng đầu khu vực Đông Nam Á, nơi nuôi dưỡng thế hệ trẻ năng động, sáng tạo và hội nhập toàn cầu.</p>
+
+    <h3>Lịch sử hình thành</h3>
+    <p>FPT Polyschool được thành lập năm 2010 bởi Tập đoàn FPT. Ban đầu chỉ có 2 ngành học với quy mô nhỏ, trường đã phát triển nhanh chóng và hiện nay đã có mặt tại nhiều tỉnh thành trên cả nước, với hàng nghìn học sinh mỗi năm.</p>
+  </section>
+
+  <section id="su-kien">
+    <h2>Sự kiện</h2>
+    <ul>
+      <li><strong>Ngày hội định hướng nghề nghiệp</strong> (Tháng 4): Học sinh được tư vấn trực tiếp bởi doanh nghiệp và cựu sinh viên.</li>
+      <li><strong>Tuần lễ sáng tạo STEAM</strong>: Trưng bày các sản phẩm công nghệ, kỹ thuật, mỹ thuật do học sinh thiết kế.</li>
+      <li><strong>Cuộc thi Poly Got Talent</strong>: Sân chơi văn nghệ, sáng tạo dành cho học sinh toàn trường.</li>
+      <li><strong>Trại hè xanh - Green Camp</strong>: Học sinh tham gia các hoạt động ngoài trời, rèn luyện kỹ năng sống và bảo vệ môi trường.</li>
+    </ul>
+  </section>
+
+  <section id="moi-truong">
+    <h2>Môi trường học tập</h2>
+    <p>FPT Polyschool mang lại không gian học tập hiện đại, thân thiện và năng động với các phòng lab, thư viện, khu hoạt động thể chất và công nghệ tiên tiến. Học sinh được khuyến khích phát triển toàn diện về thể chất, trí tuệ và tinh thần.</p>
+  </section>
+
+  <section id="chuong-trinh">
+    <h2>Chương trình đào tạo</h2>
+    <p>Chúng tôi áp dụng phương pháp giáo dục thực hành, kết hợp lý thuyết với trải nghiệm thực tiễn. Các ngành học bao gồm: CNTT, Thiết kế đồ họa, Marketing, Quản trị kinh doanh,... cùng nhiều lớp kỹ năng mềm và ngoại ngữ tăng cường.</p>
+  </section>
+
+  <section id="hoi-dap">
+    <h2>Hỏi đáp</h2>
+    <div class="faq-item">
+      <h3>📌 Học phí của trường là bao nhiêu?</h3>
+      <p>Học phí dao động từ 8 – 12 triệu/tháng tuỳ chuyên ngành và cơ sở.</p>
+    </div>
+    <div class="faq-item">
+      <h3>📌 Trường có ký túc xá không?</h3>
+      <p>Trường có hệ thống ký túc xá hiện đại và an toàn cho học sinh xa nhà.</p>
+    </div>
+    <div class="faq-item">
+      <h3>📌 Có chương trình học bổng không?</h3>
+      <p>Có. Học sinh xuất sắc và hoàn cảnh khó khăn đều có cơ hội nhận học bổng lên đến 100%.</p>
+    </div>
+  </section>
+
+  <section id="gop-y">
+    <h2>Góp ý</h2>
+    <div class="faq-item">
+      <h3>📥 Góp ý về chất lượng giảng dạy</h3>
+      <p>Chúng tôi luôn lắng nghe ý kiến đóng góp để cải tiến chương trình đào tạo.</p>
+    </div>
+    <div class="faq-item">
+      <h3>📥 Góp ý về cơ sở vật chất</h3>
+      <p>Mọi phản hồi về phòng học, thư viện, khu vui chơi sẽ được chuyển đến ban quản lý để xử lý sớm nhất.</p>
+    </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script>
+    function showSection(id) {
+      document.getElementById('imageSection').style.display = 'none';
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => section.classList.remove('active'));
+      const target = document.getElementById(id);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' });
+      }
+    }
+
+    function showHome() {
+      document.getElementById('imageSection').style.display = 'block';
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => section.classList.remove('active'));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
